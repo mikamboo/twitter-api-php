@@ -19,7 +19,7 @@ class TwitterAPIExchange
     private $consumer_secret;
     private $postfields;
     private $getfield;
-    private $localhost;
+    private $sslverify;
     
     protected $oauth;
     public $url;

@@ -19,6 +19,8 @@ class TwitterAPIExchange
     private $consumer_secret;
     private $postfields;
     private $getfield;
+    private $localhost;
+    
     protected $oauth;
     public $url;
 
@@ -49,6 +51,8 @@ class TwitterAPIExchange
         $this->oauth_access_token_secret = $settings['oauth_access_token_secret'];
         $this->consumer_key = $settings['consumer_key'];
         $this->consumer_secret = $settings['consumer_secret'];
+        
+        $this->sslverify = (isset($settings['sslverify'])) ? (boolean)$settings['sslverify'] : false;
     }
     
     /**
@@ -195,6 +199,7 @@ class TwitterAPIExchange
             CURLOPT_URL => $this->url,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_TIMEOUT => 10,
+            CURLOPT_SSL_VERIFYPEER => $this->sslverify
         );
 
         if (!is_null($postfields))
